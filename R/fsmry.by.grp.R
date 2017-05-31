@@ -1,7 +1,22 @@
-fsmry.by.grp <- function(y=dat.lte4[,"LTE4.pre"],
-                         grp=dat.lte4[,"smokestatus"],
-                         log.tr=T, method="Tukey", method.padj=NULL,
-                         paired=F, IQR=T){
+#' Summarize a continuous variable by a categorical variable
+#'
+#' @param y A continuous variable.
+#' @param grp A categorical group variable.
+#' @param log.tr An indicator of whether to log transform y
+#' @param method Text string for multiple comparisons method if there are more than 2 categories, such as "Tukey", "Dunnet", or specifying the contrast
+#' @param method.padj Text string for specifying method for multiple adjustment of p-values, e.g., "bonferroni", "fdr", etc.
+#' @param paired An indicator of whether paired test should be used
+#' @param IQR An indicator of whether to summarize y using IQR (default) or range.
+#' @return Summary of difference in y by grp using parametric and non-parametric methods.
+#' @examples
+#' fsmry.by.grp(y=c(rnorm(10), rnorm(10, mean=0.5)),
+#'              grp=factor(rep(c("grp1", "grp2"), each=10)))
+fsmry.by.grp <- function(y, grp,
+                         log.tr=F,
+                         method="Tukey",
+                         method.padj=NULL,
+                         paired=F,
+                         IQR=T){
   ## note that measurements in different groups are assumed independent here
   ## random effects models may need to be used
   ## require library(multcomp)

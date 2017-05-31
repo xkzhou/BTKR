@@ -1,6 +1,24 @@
-##----------------------------------------------------------------------
-## generating demographic data table
-##----------------------------------------------------------------------
+#' Generating summary statistics of data in a data frame by a categorical variable
+#'
+#' @param dat A data frame.
+#' @param vars A vector of variable names to be analyzed.
+#' @param vars.cat A vector of indicators of whether the variable is categorical or not
+#' @param vars.chisq A vector of indicators specifying for which variables the chi-square test should be used
+#' @param by A categorial variable name the vars will be summarized by.
+#' @param all An indicator of whether to provide the overall summary statistics of the data
+#' @param markdown An indicator of whether to generate the summary table by bolding the variable names using markdown language.
+#' @param IQR An indicator of whether to summarize the continuous using IQR (default) or range.
+#' @return Summary statistics of each variable in a data frame and by grp using parametric and non-parametric methods.
+#' @examples
+#' set.seed(16)
+#' dat.work <- data.frame(ht = c(rnorm(10, mean=1.72, sd=0.1), rnorm(10, mean=1.65, sd=0.1)),
+#'                        wt = c(rnorm(10, mean=70, sd=10), rnorm(10, mean=60, sd=10)),
+#'                        sex = factor(rep(c("Female", "Male", "Female", "Male"), c(2,8,6,4))),
+#'                        group = factor(rep(c("grp1", "grp2"), each=10)))
+#' fsmry.dmgrph(dat = dat.work,
+#'              vars = c("ht", "wt", "sex"),
+#'              vars.cat = c(0, 0, 1),
+#'              by =  "group")
 fsmry.dmgrph <- function(dat=dat.work,
                          vars=vars,
                          vars.cat=vars.cat,

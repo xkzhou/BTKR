@@ -8,3 +8,4 @@ Description: This package includes multiple functions that implement some common
 License: file LICENSE
 Encoding: UTF-8
 LazyData: true
+RoxygenNote: 6.0.1

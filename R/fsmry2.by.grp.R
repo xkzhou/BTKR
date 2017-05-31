@@ -1,6 +1,15 @@
-fsmry2.by.grp <- function(y=dat.shs[,"gender"],
-                          grp=dat.shs[,"case_control"],
-                          cmp.method=c("fisher","chisq")){
+#' Summarize a categorical variable by a categorical variable
+#'
+#' @param y A categorical variable.
+#' @param grp A categorical group variable.
+#' @param  An indicator of whether to log transform y
+#' @param cmp.method Text string for comparisons method, "fisher" or, "chisq"
+#' @return Summary of difference in distribution of y by grp using Fisher's exact test or chi-squared test.
+#' @examples
+#' fsmry2.by.grp(y = factor(rep(c("Female", "Male", "Female", "Male"), c(2,8,6,4))),
+#'               grp = factor(rep(c("grp1", "grp2"), each=10)),
+#'               cmp.method = "fisher")
+fsmry2.by.grp <- function(y, grp, cmp.method=c("fisher","chisq")){
   ## This function summarize information for categorical variables
   ##browser()
   n.y <- table(y)
