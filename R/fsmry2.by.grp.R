@@ -12,6 +12,9 @@
 fsmry2.by.grp <- function(y, grp, cmp.method=c("fisher","chisq")){
   ## This function summarize information for categorical variables
   ##browser()
+  y <- y[!is.na(grp)]
+  grp <- grp[!is.na(grp)]
+
   n.y <- table(y)
   n.missing <- sum(is.na(y))
   if (n.missing>0)
