@@ -93,10 +93,12 @@ fsmry.graph <- function(y, x,
     win.metafile(file=file.name,width=width, height=height)
   }
   if(is.null(mar)) {
-    if(x.plab!="")
-      mar <- c(3.5,3.5,0.5,0.5)
+    if(class(x.plab)=="character"){
+      if(x.plab=="")
+        mar <- c(2.5,2.5,0.5,0.5)
+    }
     else
-      mar <- c(2.5,3.5,0.5,0.5)
+      mar <- c(3.5,3.5,0.5,0.5)
   }
   if(is.null(mgp)) mgp <- c(2.2,0.8,0)
   par(mar=mar, mgp=mgp)
@@ -176,7 +178,8 @@ fsmry.graph <- function(y, x,
 
     if(is.null(xnames)) xnames <- levels(x)
     if(is.null(ynames)) ynames <- levels(y)
-    if(y.plab=="") y.plab <- paste0("% of ", ynames[2], " cases")
+    if(class(y.plab)=="character")
+      if(y.plab=="") y.plab <- paste0("% of ", ynames[2], " cases")
 
     if(length(y.prop)==2)
       mp <- barplot(y.prop, space=c(0.3,rep(0.3, length(xnames)-1))/0.6,
@@ -206,7 +209,8 @@ fsmry.graph <- function(y, x,
                                      each = length(levels(y))))
     y.lim <- range(0, 105)
     if(is.null(xnames)) xnames <- levels(x)
-    if(y.plab=="") y.plab <- "Percent"
+    if(class(y.plab)=="character")
+      if(y.plab=="") y.plab <- "Percent"
     mp <- barplot(y.prop, width=0.6,
                   col= cm.colors(length(levels(y))), names=levels(x),
                   ylim=y.lim, xlab=x.plab, ylab=y.plab, las=1, beside = TRUE,
