@@ -83,9 +83,11 @@ fsmry.by.grp <- function(y, grp,
     if(length(method)==1) p.t <- rep(NA, length(names.comp))
     ## browser()
     for(i in 1:length(names.comp)){
-      grp.names <- strsplit(names.comp[i], split=" - ")[[1]]
-      y1 <- y[grp==grp.names[1]]
-      y2 <- y[grp==grp.names[2]]
+      grp.names.signs <- strsplit(names.comp[i],  split = " ")[[1]]
+      grp.names1 <- grp.names.signs[which(grp.names.signs=="-")-1]
+      grp.names2 <- grp.names.signs[which(grp.names.signs=="-")+1]
+      y1 <- y[grp == grp.names1]
+      y2 <- y[grp == grp.names2]
       p.wilcox[i] <- wilcox.test(y1,y2, exact=F)$p.value
       if(length(method)==1){
         if(length(y1)==1&length(y2)==1)
