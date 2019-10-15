@@ -37,7 +37,7 @@ fsmry2.by.grp <- function(y, grp, cmp.method=c("fisher","chisq")){
     }
   }
 
-  out.y <- data.frame(n=as.numeric(n.y),
+  out.y <- data.frame(n=as.integer(n.y),
                       apply(y.by.grp,2, function(x)
                         paste(x," (",round(100*x/sum(x),2),"%)", sep="")),
                       p.value=c(rep("",length(n.y)-1),
@@ -46,7 +46,7 @@ fsmry2.by.grp <- function(y, grp, cmp.method=c("fisher","chisq")){
   row.names(out.y) <- row.names(y.by.grp)
   attr(out.y,"detailed") <- test.out
   if(n.missing>0){
-    out.missing <- data.frame(n=as.numeric(n.mis.tab),
+    out.missing <- data.frame(n=as.integer(n.mis.tab),
                               apply(mis.by.grp,2, function(x)
                                 paste(x," (",round(100*x/sum(x),2),"%)",
                                       sep="")),
