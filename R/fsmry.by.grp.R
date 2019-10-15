@@ -21,7 +21,7 @@ fsmry.by.grp <- function(y, grp,
   ## random effects models may need to be used
   ## require library(multcomp)
   ## source("~/packages/my_R_code.R")
-  library(multcomp)
+  ##library(multcomp)
   if (log.tr) y <- log(y)
   if(!is.factor(grp)) grp <- factor(grp)
   n <- table(grp)
@@ -174,28 +174,28 @@ fsmry.by.grp <- function(y, grp,
     pval.w <- wilcox.test(y[grp==grp.levels[1]], y[grp==grp.levels[2]],
                           paired=paired, na.action=na.omit)$p.val
     if(IQR){
-      out <- data.frame(n=as.numeric(n), n.complete=n.cmplt,
+      out <- data.frame(n=as.integer(n), n.complete=n.cmplt,
                         mean.sd=mean.sd,
                         pval.t=c(rep("",length(n)-1),
                                  ifelse(pval.t<0.001, "<0.001", round(pval.t,3))),
                         median.IQR=median.IQR,
                         pval.W=c(rep("",length(n)-1),
                                  ifelse(pval.w<0.001, "<0.001", round(pval.w,3))))
-      out2 <- data.frame(n=as.numeric(n), n.complete=n.cmplt,
+      out2 <- data.frame(n=as.integer(n), n.complete=n.cmplt,
                          mean.sd=mean.sd,
                          pval.t=c(rep("",length(n)-1),pval.t),
                          median.IQR=median.IQR,
                          pval.W=c(rep("",length(n)-1),pval.w), stringsAsFactors=F)
     }
     else{
-      out <- data.frame(n=as.numeric(n), n.complete=n.cmplt,
+      out <- data.frame(n=as.integer(n), n.complete=n.cmplt,
                         mean.sd=mean.sd,
                         pval.t=c(rep("",length(n)-1),
                                  ifelse(pval.t<0.001, "<0.001", round(pval.t,3))),
                         median.range=median.range,
                         pval.W=c(rep("",length(n)-1),
                                  ifelse(pval.w<0.001, "<0.001", round(pval.w,3))))
-      out2 <- data.frame(n=as.numeric(n), n.complete=n.cmplt,
+      out2 <- data.frame(n=as.integer(n), n.complete=n.cmplt,
                          mean.sd=mean.sd,
                          pval.t=c(rep("",length(n)-1),pval.t),
                          median.range=median.range,
