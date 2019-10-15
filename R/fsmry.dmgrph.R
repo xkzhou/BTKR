@@ -231,8 +231,8 @@ fsmry.dmgrph <- function(dat=dat.work,
           "p.value")
   }
   if(!is.null(by))
-    return(list(demographic=data.frame(out),summary.all=out.all,
+    return(list(demographic=out,summary.all=out.all,
                 summary.by.grp=out.by.grp))
   else
-    return(list(demographic=data.frame(out),summary.all=out.all))
+    return(list(demographic=out,summary.all=out.all))
 }
