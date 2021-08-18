@@ -23,6 +23,7 @@
 #' @param mgp graphical parameter
 #' @param cex.bar graphical parameter for specifying text size of text above each bar
 #' @param cex graphical parameter
+#' @param cex.axis graphical parameter
 #' @param ... additional graphical paramter
 #' @return Summary graph of y by x.
 #' @examples
@@ -78,6 +79,7 @@ fsmry.graph <- function(y, x,
                         mar=NULL, mgp=NULL,
                         cex.bar=NULL,
                         cex=1,
+                        cex.axis=1,
                         ...){
   ## This function is used to generate commonly used plots
   ##browser()
@@ -123,7 +125,7 @@ fsmry.graph <- function(y, x,
     else y.lim <- ylim
     if(is.null(xnames)) xnames <- levels(x)
     boxplot(y~x, boxwex=0.5, xlab=x.plab, ylab=y.plab, names=xnames, ylim=y.lim,
-            las=1, cex.axis=1,...)
+            las=1, cex.axis=cex.axis,...)
     if(!is.null(stat.txt)){
       if(is.null(loc.stat))
         text(x=0.9, y=y.lim[2]-0.01*(y.lim[2]-y.lim[1]),label=stat.txt, cex=cex)

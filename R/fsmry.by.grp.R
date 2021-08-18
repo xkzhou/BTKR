@@ -21,7 +21,7 @@ fsmry.by.grp <- function(y, grp,
   ## random effects models may need to be used
   ## require library(multcomp)
   ## source("~/packages/my_R_code.R")
-  library(multcomp)
+  ##library(multcomp)
   if (log.tr) y <- log(y)
   if(!is.factor(grp)) grp <- factor(grp)
   n <- table(grp)
