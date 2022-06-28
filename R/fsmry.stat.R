@@ -41,7 +41,7 @@ fauc.txt <- function(ci.auc, digits=2){
 }
 
 ##-------------------------------------------
-fcphuni.stat <- function(y=out[[6]][[1]]){
+fcphuni.stat <- function(y=out.coxph){
   ## extract important outcomes
   n <- y$n
   nevent <-y$nevent
@@ -68,7 +68,7 @@ fcphuni.stat <- function(y=out[[6]][[1]]){
   return(out)
 }
 
-fcphuni.tbl <- function(x=out){
+fcphuni.tbl <- function(x=out.fcphuni.stat){
   xlen <-length(x)
   out <- list()
   for (i in 1:xlen){
