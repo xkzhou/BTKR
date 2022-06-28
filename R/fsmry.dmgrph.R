@@ -194,7 +194,8 @@ fsmry.dmgrph <- function(dat=dat.work,
                         c(tmp[3,], as.vector(obg[,5]),
                           as.vector(obg[n.level,6])))
           if(dim(tmp)[1]>3) {
-            if(any(table(ifelse(is.na(dat[,vars[i]]),"Y","N"), dat[,by])<=5))
+            if(!vars.chisq[i])
+            #if(any(table(ifelse(is.na(dat[,vars[i]]),"Y","N"), dat[,by])<=5))
               mis.by.grp <- fsmry2.by.grp(y=ifelse(is.na(dat[,vars[i]]),"Y","N"),
                                           grp=dat[,by],
                                           cmp.method="fisher")
