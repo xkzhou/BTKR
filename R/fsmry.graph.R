@@ -68,6 +68,7 @@ fsmry.graph <- function(y, x,
                         stat.txt=NULL,
                         loc.stat=NULL,
                         ylim=NULL,
+                        xlim=NULL,
                         fname=NULL,
                         y.fnlab=NULL,
                         x.fnlab=NULL,
@@ -106,9 +107,11 @@ fsmry.graph <- function(y, x,
   par(mar=mar, mgp=mgp)
 
   if(type=="scatter"){
-    ylim <- range(y, na.rm=T)
-    xlim <- range(x, na.rm=T)
-    plot(x, y, xlab=x.plab, ylab=y.plab,pch=20, cex=cex, las=1,...)
+    if(is.null(ylim)) y.lim <- range(pretty(y), na.rm=T)
+    else y.lim <- ylim
+    if(is.null(xlim)) x.lim <- range(pretty(x), na.rm=T)
+    else x.lim <- xlim
+    plot(x, y, xlab=x.plab, ylab=y.plab,pch=20, cex=cex, las=1, xlim=x.lim, ylim=y.lim,...)
     if(withline)
       abline(coef(line(x,y)),...)
     if(!is.null(stat.txt)){

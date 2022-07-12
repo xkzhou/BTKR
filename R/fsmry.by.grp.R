@@ -87,12 +87,12 @@ fsmry.by.grp <- function(y, grp,
       grp.names.all <- grp.names.signs[-which(grp.names.signs %in% c("+", "-"))]
       grp.names2 <- grp.names.signs[which(grp.names.signs=="-")+1]
       grp.names1 <- grp.names.all[-which(grp.names.all %in% grp.names2)]
-      y1 <- y[grp == grp.names1]
-      y2 <- y[grp == grp.names2]
+      y1 <- y[grp == grp.names1&!is.na(y)]
+      y2 <- y[grp == grp.names2&!is.na(y)]
       p.wilcox[i] <- wilcox.test(y1,y2, exact=F)$p.value
       if(length(method)==1){
-        if(length(y1)==1&length(y2)==1)
-          p.t[i] <- 1
+        if((length(y1)==1&length(y2)==1)|length(y1)==0|length(y2)==0)
+          p.t[i] <- NA
         else if(length(y1)==1|length(y2)==1)
           p.t[i] <- t.test(y1,y2, var.equal=T)$p.value
         else
@@ -169,10 +169,20 @@ fsmry.by.grp <- function(y, grp,
   else{
     ##browser()
     grp.levels <- levels(grp)
-    pval.t <- t.test(y[grp==grp.levels[1]], y[grp==grp.levels[2]],
-                     paired=paired, na.action=na.omit)$p.val
-    pval.w <- wilcox.test(y[grp==grp.levels[1]], y[grp==grp.levels[2]],
-                          paired=paired, na.action=na.omit)$p.val
+    y1 <- y[grp==grp.levels[1]]
+    y2 <- y[grp==grp.levels[2]]
+    n.y1 <- length(y1)-sum(is.na(y1))
+    n.y2 <- length(y2)-sum(is.na(y2))
+    if((n.y1==1&n.y2==1)|n.y1==0|n.y2==0)
+      pval.t <- NA
+    else if(n.y1==1|n.y2==1)
+      pval.t <- t.test(y1, y2, paired=paired, var.equal=T)$p.val
+    else
+      pval.t <- t.test(y1, y2, paired=paired)$p.val
+    if(n.y1==0|n.y2==0)
+      pval.w <- NA
+    else
+      pval.w <- wilcox.test(y1, y2, paired=paired, na.action=na.omit)$p.val
     if(IQR){
       out <- data.frame(n=as.integer(n), n.complete=n.cmplt,
                         mean.sd=mean.sd,
