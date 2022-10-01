@@ -30,7 +30,7 @@ fsmry2.by.grp <- function(y, grp, cmp.method=c("fisher","chisq")){
       mis.by.grp <- table(ifelse(is.na(y),"Yes", "No"), grp)
       test2.out <- try(fisher.test(mis.by.grp), TRUE)
       if(class(test2.out)=="try-error")
-        test.out <- fisher.test(mis.by.grp, simulate.p.value = T)
+        test2.out <- fisher.test(mis.by.grp, simulate.p.value = T)
     }
   }
   if(cmp.method=="chisq"){
