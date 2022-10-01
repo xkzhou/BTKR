@@ -23,10 +23,14 @@ fsmry2.by.grp <- function(y, grp, cmp.method=c("fisher","chisq")){
   y.by.grp <- table(y, grp)
 
   if(cmp.method=="fisher"){
-    test.out <- fisher.test(y.by.grp)
+    test.out <- try(fisher.test(y.by.grp), TRUE)
+    if(class(test.out)=="try-error")
+      test.out <- fisher.test(y.by.grp, simulate.p.value = T)
     if (n.missing>0){
       mis.by.grp <- table(ifelse(is.na(y),"Yes", "No"), grp)
-      test2.out <- fisher.test(mis.by.grp)
+      test2.out <- try(fisher.test(mis.by.grp), TRUE)
+      if(class(test2.out)=="try-error")
+        test.out <- fisher.test(mis.by.grp, simulate.p.value = T)
     }
   }
   if(cmp.method=="chisq"){
