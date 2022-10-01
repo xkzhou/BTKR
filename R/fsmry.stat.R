@@ -1,13 +1,14 @@
 ##-------------------------------------------------------------------
 fpval.txt <- function(x, d=3, p=TRUE){
-  if(x<0.001){
-    if(p) return("P<0.001")
-    else return ("<0.001")
-  } else {
-    out <- format(round(x,d), digits=d, nsmall=d)
-    if(p) return(paste0("P=", out))
-    else return(out)
+  cp <- 10^(-1*d)
+  id <- which(x<cp)
+  out<- format(round(x,d), digits=d, nsmall=d)
+  if(p) out <- paste0("P=", out)
+  if(length(id)>0){
+    out[id] <- paste0("<", cp)
+    if(p) out[id] <- paste0("P<", cp)
   }
+  return(out)
 }
 
 fpval2.txt <- function(pval, digits=3){
