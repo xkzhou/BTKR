@@ -2,7 +2,6 @@
 #'
 #' @param y A categorical variable.
 #' @param grp A categorical group variable.
-#' @param  An indicator of whether to log transform y
 #' @param cmp.method Text string for comparisons method, "fisher" or, "chisq"
 #' @param prop.by.row Logic value of whether to calculate the proportions by row, default is FALSE
 #'

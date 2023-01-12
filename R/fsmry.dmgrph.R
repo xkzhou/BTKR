@@ -4,11 +4,11 @@
 #' @param vars A vector of variable names to be analyzed.
 #' @param vars.cat A vector of indicators of whether the variable is categorical or not
 #' @param vars.chisq A vector of indicators specifying for which variables the chi-square test should be used
-#' @param by A categorial variable name the vars will be summarized by.
+#' @param by A categorical variable name the vars will be summarized by.
 #' @param all An indicator of whether to provide the overall summary statistics of the data
 #' @param markdown An indicator of whether to generate the summary table by bolding the variable names using markdown language.
 #' @param IQR An indicator of whether to summarize the continuous using IQR (default) or range.
-#' @param prop.by.row Logic value of whether to calculate the proportions by row, default is FALSE
+#' @param prop.by.row An indicator of whether to calculate the proportions by row, default is FALSE
 #'
 #' @return Summary statistics of each variable in a data frame and by grp using parametric and non-parametric methods.
 #'
