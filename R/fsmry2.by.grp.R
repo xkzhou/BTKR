@@ -5,7 +5,9 @@
 #' @param  An indicator of whether to log transform y
 #' @param cmp.method Text string for comparisons method, "fisher" or, "chisq"
 #' @param prop.by.row Logic value of whether to calculate the proportions by row, default is FALSE
+#'
 #' @return Summary of difference in distribution of y by grp using Fisher's exact test or chi-squared test.
+#'
 #' @examples
 #' fsmry2.by.grp(y = factor(rep(c("Female", "Male", "Female", "Male"), c(2,8,6,4))),
 #'               grp = factor(rep(c("grp1", "grp2"), each=10)),
@@ -13,6 +15,7 @@
 #' fsmry2.by.grp(y = factor(rep(c("Female", "Male", "Female", "Male"), c(2,8,6,4))),
 #'               grp = factor(rep(c("grp1", "grp2"), each=10)),
 #'               cmp.method = "fisher", prop.by.row=T)
+#'
 fsmry2.by.grp <- function(y, grp, cmp.method=c("fisher","chisq"), prop.by.row=FALSE){
   ## This function summarize information for categorical variables
   ## browser()

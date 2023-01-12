@@ -9,21 +9,27 @@
 #' @param markdown An indicator of whether to generate the summary table by bolding the variable names using markdown language.
 #' @param IQR An indicator of whether to summarize the continuous using IQR (default) or range.
 #' @param prop.by.row Logic value of whether to calculate the proportions by row, default is FALSE
+#'
 #' @return Summary statistics of each variable in a data frame and by grp using parametric and non-parametric methods.
+#'
 #' @examples
+#'
 #' set.seed(16)
 #' dat.work <- data.frame(ht = c(rnorm(10, mean=1.72, sd=0.1), rnorm(10, mean=1.65, sd=0.1)),
 #'                        wt = c(rnorm(10, mean=70, sd=10), rnorm(10, mean=60, sd=10)),
 #'                        sex = factor(rep(c("Female", "Male", "Female", "Male"), c(2,8,6,4))),
 #'                        group = factor(rep(c("grp1", "grp2"), each=10)))
+#'
 #' fsmry.dmgrph(dat = dat.work,
 #'              vars = c("ht", "wt", "sex"),
 #'              vars.cat = c(0, 0, 1),
 #'              by =  "group")
+#'
 #' fsmry.dmgrph(dat = dat.work,
 #'              vars = c("ht", "wt", "sex"),
 #'              vars.cat = c(0, 0, 1),
 #'              by =  "group", prop.by.row=T)
+#'
 fsmry.dmgrph <- function(dat=dat.work,
                          vars=vars,
                          vars.cat=vars.cat,
