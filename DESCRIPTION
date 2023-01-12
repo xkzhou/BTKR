@@ -1,7 +1,7 @@
 Package: BTKR
 Type: Package
 Title: Biostatistics Tools Kit in R
-Version: 0.1.0
+Version: 0.1.1
 Author: Xi Kathy Zhou
 Maintainer: Xi Kathy Zhou <kaz2004@med.cornell.edu>
 Description: This package includes multiple functions that implement some commonly used biostatistics analysis methods for simple summary of data.

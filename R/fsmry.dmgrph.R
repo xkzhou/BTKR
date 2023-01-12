@@ -8,6 +8,7 @@
 #' @param all An indicator of whether to provide the overall summary statistics of the data
 #' @param markdown An indicator of whether to generate the summary table by bolding the variable names using markdown language.
 #' @param IQR An indicator of whether to summarize the continuous using IQR (default) or range.
+#' @param prop.by.row Logic value of whether to calculate the proportions by row, default is FALSE
 #' @return Summary statistics of each variable in a data frame and by grp using parametric and non-parametric methods.
 #' @examples
 #' set.seed(16)
@@ -19,6 +20,10 @@
 #'              vars = c("ht", "wt", "sex"),
 #'              vars.cat = c(0, 0, 1),
 #'              by =  "group")
+#' fsmry.dmgrph(dat = dat.work,
+#'              vars = c("ht", "wt", "sex"),
+#'              vars.cat = c(0, 0, 1),
+#'              by =  "group", prop.by.row=T)
 fsmry.dmgrph <- function(dat=dat.work,
                          vars=vars,
                          vars.cat=vars.cat,
@@ -26,7 +31,8 @@ fsmry.dmgrph <- function(dat=dat.work,
                          by="BMI.cat",
                          all=T,
                          markdown=T,
-                         IQR=T){
+                         IQR=T,
+                         prop.by.row=FALSE){
   ## This function produce the demographics data for all study subjects
   ## and/or by a categorical variable
   ## Example: out.byCohort <- fsmry.dmgrph(dat=dat.work,vars=vars,
@@ -36,6 +42,10 @@ fsmry.dmgrph <- function(dat=dat.work,
   ##             sep="\t",row.name=F, col.name=T, quote=T)
 
   ##browser()
+
+  if (class(dat)[1] == "tbl_df")
+    dat <- data.frame(dat)
+
   id.na <- which(is.na(dat[,by]))
   if(length(id.na)>0) dat <- dat[-id.na,]
   n <- dim(dat)[1]
@@ -82,12 +92,14 @@ fsmry.dmgrph <- function(dat=dat.work,
         if(!vars.chisq[i])
           out.by.grp[[i]] <- fsmry2.by.grp(y=dat[,vars[i]],
                                            grp=dat[,by],
-                                           cmp.method="fisher")
+                                           cmp.method="fisher",
+                                           prop.by.row=prop.by.row)
         else{
           ##browser()
           out.by.grp[[i]] <- fsmry2.by.grp(y=dat[,vars[i]],
                                            grp=dat[,by],
-                                           cmp.method="chisq")
+                                           cmp.method="chisq",
+                                           prop.by.row=prop.by.row)
         }
         if(is.null(tmp)){
           if(sum(is.na(dat[,vars[i]]))==0)
