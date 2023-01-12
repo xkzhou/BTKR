@@ -14,7 +14,8 @@
 #'               cmp.method = "fisher")
 #' fsmry2.by.grp(y = factor(rep(c("Female", "Male", "Female", "Male"), c(2,8,6,4))),
 #'               grp = factor(rep(c("grp1", "grp2"), each=10)),
-#'               cmp.method = "fisher", prop.by.row=T)
+#'               cmp.method = "fisher",
+#'               prop.by.row=T)
 #'
 fsmry2.by.grp <- function(y, grp, cmp.method=c("fisher","chisq"), prop.by.row=FALSE){
   ## This function summarize information for categorical variables

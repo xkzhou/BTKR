@@ -13,7 +13,6 @@
 #' @return Summary statistics of each variable in a data frame and by grp using parametric and non-parametric methods.
 #'
 #' @examples
-#'
 #' set.seed(16)
 #' dat.work <- data.frame(ht = c(rnorm(10, mean=1.72, sd=0.1), rnorm(10, mean=1.65, sd=0.1)),
 #'                        wt = c(rnorm(10, mean=70, sd=10), rnorm(10, mean=60, sd=10)),
@@ -28,7 +27,8 @@
 #' fsmry.dmgrph(dat = dat.work,
 #'              vars = c("ht", "wt", "sex"),
 #'              vars.cat = c(0, 0, 1),
-#'              by =  "group", prop.by.row=T)
+#'              by =  "group",
+#'              prop.by.row=T)
 #'
 fsmry.dmgrph <- function(dat=dat.work,
                          vars=vars,
