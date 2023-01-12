@@ -22,13 +22,8 @@
 #' fsmry.dmgrph(dat = dat.work,
 #'              vars = c("ht", "wt", "sex"),
 #'              vars.cat = c(0, 0, 1),
-#'              by =  "group")
-#'
-#' fsmry.dmgrph(dat = dat.work,
-#'              vars = c("ht", "wt", "sex"),
-#'              vars.cat = c(0, 0, 1),
 #'              by =  "group",
-#'              prop.by.row=T)
+#'              prop.by.row=F)
 #'
 fsmry.dmgrph <- function(dat=dat.work,
                          vars=vars,
